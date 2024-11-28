@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cosmic Horizons - Game Design Document</title>
+    <style>
+        :root {
+            --primary-dark: #1f1f1f;
+            --secondary-dark: #2c2c2c;
+            --accent-blue: #ffffff;
+            --text-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            background-image: url('fundo.webp');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-blue);
+            text-shadow: 0 0 20px rgba(0,160,240,0.7);
+        }
+
+        .hero-section .subtitle {
+            font-size: 1.5rem;
+            margin-top: 15px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: transparent;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .game-section {
+            background-color: var(--secondary-dark);
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .game-section h2 {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .game-visual {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .game-visual.reversed {
+            flex-direction: row-reverse;
+        }
+
+        .game-visual img {
+            max-width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .game-details {
+            flex: 1;
+        }
+
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            background-color: var(--primary-dark);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .feature-list li::before {
+            content: '•';
+            position: absolute;
+            left: 15px;
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+        }
+
+        .hud-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 60vh;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .game-visual, .hud-section {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            .game-visual img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-overlay">
+            <h1>A Floresta dos Três Corpos</h1>
+            <p class="subtitle">Documento de Design de Jogo - Exploração Espacial</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="game-section">
+            <h2>Conceito do Jogo</h2>
+            <div class="game-visual">
+                <img src="CameraGame2.jpg" alt="Conceito de Jogo Espacial">
+                <div class="game-details">
+                    <p>No Universo de A Floresta dos Três Corpos, a humanidade descobre que não está sozinha. Após um contato inicial com a avançada e desesperada civilização Trisolarian, a galáxia se torna o campo de batalha de uma guerra silenciosa, onde as escolhas das espécies determinarão não apenas o destino da galáxia, mas também a sobrevivência de civilizações inteiras em uma “floresta sombria” de medo e destruição.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Narrativa e Universo</h2>
+            <div class="game-visual reversed">
+                <img src="EspacionaveGame.jpg" alt="Universo do Jogo">
+                <div class="game-details">
+                    <p>Em um cosmos vasto e impiedoso, onde a sobrevivência é ditada pelo silêncio e pelo medo, a humanidade faz uma descoberta que muda o curso de sua história: não estamos sozinhos. Uma transmissão alienígena vinda de Trisolaris — um sistema estelar caótico com três sóis — revela a existência de uma civilização à beira da extinção. Contudo, o contato não é um pedido de ajuda altruísta, mas uma declaração de intenção. Os Trisolarians estão vindo, e a Terra é seu próximo alvo.
+                        Essa revelação dá início a um conflito que não é apenas de tecnologia e poder, mas de filosofia e moralidade. Em meio à preparação para uma invasão interestelar, os humanos dividem-se em facções: os Defensores da Terra, que acreditam na resistência até o fim; os Erisitas, que veem a submissão como o único caminho para a sobrevivência; e os Comandantes do Universo, que visam expandir a influência humana, independentemente das consequências.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Mecânicas Principais - Gameplay</h2>
+            <ul class="feature-list">
+                <li>Exploração Científica</li>
+                <li>Guerras Espaciais Estratégicas</li>
+                <li>Simulação da Floresta Sombria</li>
+                <li>Gestão de Recursos e Alianças</li>
+                <li>Narrativa Única</li>
+            </ul>
+        </section>
+
+        <section class="game-section">
+            <h2>Desafios</h2>
+            <div class="game-visual">
+                <img src="desafios.jpg" alt="Conceito de Jogo Espacial">
+                <div class="game-details">
+                    <p>Esteja preparado para resolver diversos tipos de quebra-cabeças baseados na física, combates de longa ou curta distância, exploração e fabricação de diversos itens para ajudar a progredir na história. 
+                        A cada batalha e território conquistado o jogador receberá pontos de melhora, para poder desbloquear suas próximas missões. Ao decorrer da história, Remy vai se deparar com inimigos mais fortes em cada região que passar. É muito importante estar bem armado para entrar nos confrontos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Chefões</h2>
+            <div class="game-visual reversed">
+                <img src="Chefe.jpg" alt="Universo do Jogo">
+                <div class="game-details">
+                    <p>O game conta com 3 regiões, onde no final de cada capítulo, um dos Comandantes do Universo decide atacar com força máxima o território. Em uma batalha cheia de desafios e recursos escassos o jogador deve defender seu território e vencer os Comandantes com seus exércitos. </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Interface de Usuário</h2>
+            <div class="hud-section">
+                <img src="HUD.webp" alt="HUD Conceitual" width="500" height="300">
+                <div class="game-details">
+                    <h3>Elementos do HUD</h3>
+                    <ul class="feature-list">
+                        <li>1 - Inimigos Próximos</li>
+                        <li>2 - Data e Hora no Planeta</li>
+                        <li>3 - Sistema de Inventário</li>
+                        <li>4 - Armas Utilizadas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Universo</h2>
+            <div class="game-visual">
+                <img src="universo.jpg" alt="Conceito de Jogo Espacial">
+                <div class="game-details">
+                    <p>O game se passa em diversos cenários, como: Galáxia (Momento em que o jogador estiver viajando de um território para outro, ou travando confrontos), Planetas, nas missões que forem focadas em exploração/confrontos em terra.
+                        Cada capítulo está devidamente conectado com outro, com base na evolução da história e desenvolvimento dos personagens principais.
+                        Cada um dos Planetas trará experiências únicas, com diversidade de inimigos, ambientação e recursos a serem explorados. Em cada ambiente a trilha sonora será impactante, desde efeitos sonoros dos inimigos e do próprio ambiente, quanto nos confrontos com músicas de ação nos momentos de mais tensão na jornada. </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Inimigos</h2>
+            <div class="game-visual reversed">
+                <img src="Trisolarian.jpeg" alt="Universo do Jogo">
+                <div class="game-details">
+                    <p>No Universo de A Floresta dos Três Corpos iremos nos deparar com 3 espécies mais avançadas e mortífera que a humanidade. Desde o primeiro território até os locais mais a frente da história. (Trisolarians, Erisitas, Comandantes do Universo)
+                        Nossos heróis da raça humana podem tentar derrotar os inimigos com suas armas e equipamentos tecnológicos, utilizando suas estratégias de campo de batalha.
+                        Ao derrotar cada inimigo concederá pontos de melhoria e munições.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Remy Carter</h2>
+            <div class="game-visual">
+                <img src="personagens.jpg" alt="Conceito de Jogo Espacial">
+                <div class="game-details">
+                    <p>Remy Carter (Protagonista), 38 anos. Ex-militar americano, especialista em estratégias de combate e sobrevivência. É determinado e muito corajoso.
+                        Remy cresceu em uma cidade pequena no interior do Texas, onde foi moldado por uma vida simples e rígida. Inspirado pelo pai, um veterano de guerra, alistou-se no exército aos 18 anos. Durante sua carreira militar, destacou-se por sua liderança e capacidade de adaptação em situações de alto risco, chegando ao posto de capitão das forças especiais.
+                        No entanto, uma missão fracassada em território estrangeiro deixou profundas cicatrizes. Após perder metade de sua unidade em um embate envolvendo tecnologia alienígena desconhecida, Remy pediu baixa do exército, buscando um propósito maior. Ele encontrou esse propósito ao ingressar no Centro de Pesquisas Espaciais TriForce, onde acredita que pode redimir seus erros e proteger a humanidade contra ameaças interestelares. </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Dr Elena Morozova</h2>
+            <div class="game-visual">
+                <img src="dra.JPG" alt="Conceito de Jogo Espacial">
+                <div class="game-details">
+                    <p>Dr Elena Morozova, 32 anos. Cientista especializada em física teórica e inteligência artificial. 
+                        Nascida em São Petersburgo, Rússia, Elena cresceu em uma família de acadêmicos e desenvolveu interesse por física ao observar seu avô trabalhar em reatores nucleares. Aos 16 anos, ela já publicava artigos em revistas científicas de renome, mas sua carreira tomou um rumo inesperado quando uma transmissão alienígena foi interceptada em uma instalação onde trabalhava como pesquisadora.
+                        Ela se tornou obcecada com a teoria da floresta sombria e a perspectiva de civilizações ocultas no universo, sendo recrutada pelo TriForce como líder no desenvolvimento de inteligência artificial capaz de simular cenários galácticos. Seu trabalho é essencial para decodificar as mensagens dos Trisolarians e criar sistemas de defesa baseados em suas descobertas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Cutscenes</h2>
+            <div class="game-visual reversed">
+                <img src="EspacionaveGame2.jpg" alt="Universo do Jogo">
+                <div class="game-details">
+                    <p>Uma das diversas Cutscenes presentes no jogo: <br><br>
+                        
+                        A traição Erisita: 
+                        Durante uma missão de espionagem, Remy descobre que um grupo de cientistas humanos, liderados por um membro influente do TriForce, fez um pacto secreto com os Trisolarians. Elena confronta o traidor em um diálogo:
+                        “Você acredita que entregar a Terra é o único caminho? E a nossa humanidade?”
+                        A cena termina com a ativação de um dispositivo alienígena, causando uma explosão que força Remy e Elena a escaparem enquanto assistem o colapso de uma instalação crítica.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="game-section">
+            <h2>Câmera</h2>
+            <div class="game-visual reversed">
+                <img src="cenario3.jpg" alt="Universo do Jogo">
+                <div class="game-details">
+                    <p>Em A Floresta dos Três Corpos contamos com uma câmera em terceira pessoa atrás do ombro do personagem quando estamos o controlando. Com isso temos uma imersão muito maior para passarmos aos jogadores.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
